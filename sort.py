@@ -20,7 +20,7 @@ def readline():
     global infile, outlist, lines_to_read
     i = lines_to_read
     try:
-        with open(infile, newline='') as csvfile:
+        with open(infile, newline='', encoding='utf8') as csvfile:
             linereader = csv.reader(csvfile, delimiter=',', quotechar='"')
             for row in linereader:
                 #print(f"Line{i}: {len(row)}")
@@ -61,7 +61,7 @@ def run():
         return None
     else:
         infile = sys.argv[1]
-        if not os.isfile(infile):
+        if not os.path.isfile(infile):
             print(f"Wrong filename supplied: {infile}")
     if isinstance(sys.argv[2], int):
         lines_to_read = sys.argv[2]
@@ -77,7 +77,7 @@ def run():
     readline()
     #for item in outlist:
         #print(item[0])
-    with open(outfile, 'w', newline='') as csvfile:
+    with open(outfile, 'w', newline='', encoding='utf8') as csvfile:
         linewriter = csv.writer(
                 csvfile, 
                 )
